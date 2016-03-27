@@ -1,13 +1,11 @@
 package org.library.dao;
 
-import java.util.List;
+import java.io.Serializable;
 
-public interface ElementDAO<E> {
+public interface ElementDAO<E, PK extends Serializable> {
     
-    public void add(E element);
-    public void update(E element);
-    public E findByID(Long elementId);
-    public List<E> getAll();
+    public void save(E element);
+    public E findByID(PK elementId);
     public void delete(E element);
 }
 

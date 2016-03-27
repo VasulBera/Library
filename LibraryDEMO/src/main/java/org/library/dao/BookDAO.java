@@ -5,8 +5,9 @@ import java.util.List;
 import org.library.entity.Book;
 import org.library.entity.Instance;
 
-public interface BookDAO{
-    
-    public List<Instance> findByName(String name);
+public class BookDAO extends ElementDAOImp<Book, Integer>{
 
+    public BookDAO() {
+	super(Book.class);
+    }
 }

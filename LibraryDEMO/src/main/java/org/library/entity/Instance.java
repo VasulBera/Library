@@ -16,6 +16,10 @@ import javax.persistence.Table;
 @Table(name="instances_of_book")
 public class Instance implements Serializable{
     
+    public Instance() {
+	isAvailable = true;
+    }
+    
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     @Column(name="id")
@@ -24,7 +28,7 @@ public class Instance implements Serializable{
     @Column(name="is_available", nullable=false)
     private boolean isAvailable;
     
-    @ManyToOne(cascade=CascadeType.ALL, targetEntity=Book.class, fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity=Book.class, fetch=FetchType.LAZY)
     private Book book;
 
     public int getId() {

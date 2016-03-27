@@ -37,7 +37,7 @@ public class Book implements Serializable{
     @Column(name="description", nullable=true)
     private String description;
     
-    @ManyToMany(targetEntity=Author.class, fetch=FetchType.LAZY)
+    @ManyToMany(targetEntity=Author.class, fetch=FetchType.EAGER)
     @JoinTable(	name="books_authors", 
     		joinColumns={@JoinColumn(name="id_book")},
 	    	inverseJoinColumns={@JoinColumn(name="id_author")})
@@ -46,7 +46,7 @@ public class Book implements Serializable{
     @Column(name="amount_of_page", nullable=false)
     private int amountOfPage;
     
-    @ManyToOne(cascade=CascadeType.ALL, targetEntity=Book.class, fetch=FetchType.LAZY)
+    @ManyToOne(targetEntity=Book.class, fetch=FetchType.LAZY)
     private Publication publication;
     
     @Column(name="year_of_publishing", nullable=false)
@@ -82,6 +82,30 @@ public class Book implements Serializable{
 
     public void setYear(int year) {
         this.year = year;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public List<Author> getAuthors() {
+        return authors;
+    }
+
+    public void setAuthors(List<Author> authors) {
+        this.authors = authors;
+    }
+
+    public Publication getPublication() {
+        return publication;
+    }
+
+    public void setPublication(Publication publication) {
+        this.publication = publication;
     }
 
     @Override
